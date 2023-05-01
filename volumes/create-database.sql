@@ -1,0 +1,5 @@
+SELECT 'CREATE DATABASE pdv'
+WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'pdv')\gexec
+
+\c pdv
+CREATE EXTENSION IF NOT EXISTS unaccent;

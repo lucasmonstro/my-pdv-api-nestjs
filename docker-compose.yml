@@ -1,0 +1,16 @@
+services:
+    postgres:
+        container_name: postgres
+        working_dir: /usr/src/app
+        image: postgres
+        environment:
+            DB_HOST: ${DB_HOST}
+            DB_USER: ${DB_USER}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            POSTGRES_DB: ${DB_DATABASE}
+        ports:
+            - '5432:5432'
+        volumes:
+            - ./volumes/create-database.sql:/docker-entrypoint-initdb.d/create-database.sql
+            - ./volumes/populate.sh:/usr/src/app/populate.sh
+            - ./volumes/populate.sql:/usr/src/app/populate.sql
